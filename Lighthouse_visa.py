@@ -26,6 +26,7 @@ month_dic = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "Jun
     #
     # smtp.sendmail(email_from, email_to, msg.as_string())
     # smtp.quit()
+
 ACCOUNT = input("ACCOUNT:")
 PASSWORD = input("PASSWORD:")
 print("-"*50)
