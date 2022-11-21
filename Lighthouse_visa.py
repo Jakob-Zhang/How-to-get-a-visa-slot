@@ -1,31 +1,32 @@
 from bs4 import BeautifulSoup
 import time
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 month_dic = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6, "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12}
 
-#def send_email(subject):
-    # from smtplib import SMTP_SSL
-    # from email.mime.text import MIMEText
-    # from email.header import Header
-    # email_from = ""  # 改为自己的发送邮箱
-    # email_to = ""  # 接收邮箱
-    # hostname = "smtp.qq.com"  # 不变，QQ邮箱的smtp服务器地址
-    # login = ""  # 发送邮箱的用户名
-    # password = ""  # 发送邮箱的密码，即开启smtp服务得到的授权码。注：不是QQ密码。
-    # #subject = "python+smtp"  # 邮件主题
-    # text = "send email"  # 邮件正文内容
-    #
-    # smtp = SMTP_SSL(hostname)  # SMTP_SSL默认使用465端口
-    # smtp.login(login, password)
-    #
-    # msg = MIMEText(text, "plain", "utf-8")
-    # msg["Subject"] = Header(subject, "utf-8")
-    # msg["from"] = email_from
-    # msg["to"] = email_to
-    #
-    # smtp.sendmail(email_from, email_to, msg.as_string())
-    # smtp.quit()
+# def send_email(subject):
+#     from smtplib import SMTP_SSL
+#     from email.mime.text import MIMEText
+#     from email.header import Header
+#     email_from = ""  # 改为自己的发送邮箱
+#     email_to = ""  # 接收邮箱
+#     hostname = "smtp.qq.com"  # 不变，QQ邮箱的smtp服务器地址
+#     login = ""  # 发送邮箱的用户名
+#     password = ""  # 发送邮箱的密码，即开启smtp服务得到的授权码。注：不是QQ密码。
+#     #subject = "python+smtp"  # 邮件主题
+#     text = "send email"  # 邮件正文内容
+#
+#     smtp = SMTP_SSL(hostname)  # SMTP_SSL默认使用465端口
+#     smtp.login(login, password)
+#
+#     msg = MIMEText(text, "plain", "utf-8")
+#     msg["Subject"] = Header(subject, "utf-8")
+#     msg["from"] = email_from
+#     msg["to"] = email_to
+#
+#     smtp.sendmail(email_from, email_to, msg.as_string())
+#     smtp.quit()
 
 ACCOUNT = input("ACCOUNT: ")
 PASSWORD = input("PASSWORD: ")
@@ -41,10 +42,10 @@ mobile_driver = webdriver.Chrome(options=option)
 # driver = webdriver.Chrome(chrome_options=options,executable_path="./chromedriver.exe")    #这个Chromedriver改过代码
 
 mobile_driver.get('https://ais.usvisa-info.com/en-gb/niv/users/sign_in')
-mobile_driver.find_element_by_xpath('/html/body/div[5]/main/div[3]/div/div[1]/div/form/div[1]/input').send_keys(ACCOUNT)
-mobile_driver.find_element_by_xpath('/html/body/div[5]/main/div[3]/div/div[1]/div/form/div[2]/input').send_keys(PASSWORD)
-mobile_driver.find_element_by_xpath('/html/body/div[5]/main/div[3]/div/div[1]/div/form/div[3]/label/div').click()
-mobile_driver.find_element_by_xpath('/html/body/div[5]/main/div[3]/div/div[1]/div/form/p[1]/input').click()
+mobile_driver.find_element(By.XPATH,'/html/body/div[5]/main/div[3]/div/div[1]/div/form/div[1]/input').send_keys(ACCOUNT)
+mobile_driver.find_element(By.XPATH,'/html/body/div[5]/main/div[3]/div/div[1]/div/form/div[2]/input').send_keys(PASSWORD)
+mobile_driver.find_element(By.XPATH,'/html/body/div[5]/main/div[3]/div/div[1]/div/form/div[3]/label/div').click()
+mobile_driver.find_element(By.XPATH,'/html/body/div[5]/main/div[3]/div/div[1]/div/form/p[1]/input').click()
 #拿预约时间
 time.sleep(2)
 wb_data = mobile_driver.page_source.replace('&lt;', '<').replace('&gt;', '>').replace('&amp;lt;', '><').replace('&amp;', '&').strip()
